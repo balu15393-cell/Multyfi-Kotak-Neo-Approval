@@ -1,0 +1,21 @@
+Multyfi -> Kotak Neo Android FINAL v2.2
+
+FINAL LOGIC
+- Java Android app
+- Multyfi notification listener
+- NSE cash equity / MIS intraday only
+- User capital can be changed any time
+- Before preparing a new entry: live Kotak Neo limits are checked
+- Effective capital = min(user-entered capital, Kotak live available funds)
+- Quantity is recalculated from effective capital and current/prepared price
+- Final approval tap re-fetches LTP AND live Kotak funds, then recalculates quantity
+- BUY/SELL price movement rule: MARKET only inside advisory range + tolerance;
+  otherwise LIMIT at advisory edge where allowed; materially adverse move is blocked
+- One explicit APPROVE & SEND tap submits the entry through Kotak Neo API
+- Exit advisories re-check live MIS position, remaining quantity and pending exits
+- Already manually closed -> no duplicate exit
+- Test tickets are permanently dry-run
+- Live execution toggle defaults OFF
+- Kotak live Place/Modify/Cancel requires session/order traffic from whitelisted static IP
+
+GitHub Actions workflow builds app-debug.apk.
